@@ -1,0 +1,24 @@
+# SYNTAX COLORING MAP
+
+## Datatypes (KEYWORD1)
+
+Morse           KEYWORD1
+
+## Methods and function (KEYWORD2)
+
+dot             KEYWORD2
+dash            KEYWORD2
+ls              KEYWORD2
+ws              KEYWORD2
+setPin          KEYWORD2
+setCC           KEYWORD2
+setLS           KEYWORD2
+setWS           KEYWORD2
+reset           KEYWORD2
+
+## Constants (LITERAL1)
+
+DEF_MORSE_PIN   LITERAL1
+DEF_MORSE_CC    LITERAL1
+DEF_MORSE_LS    LITERAL1
+DEF_MORSE_WS    LITERAL1
