@@ -30,7 +30,7 @@
 
 class Morse {
     public:
-        Morse(uint8_t pin=DEF_MORSE_PIN; int cc=DEF_MORSE_CC);
+        Morse(uint8_t pin = DEF_MORSE_PIN; int cc = DEF_MORSE_CC);
         
         // The return a dot and pause (1H + 1L) at one repeat.
         // Takes 2 cycles (every repeat).

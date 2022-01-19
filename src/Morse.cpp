@@ -24,7 +24,7 @@ Morse::Morse(uint8_t pin; int cc) {
 // Transmit functions
 
 void Morse::dot(int repeat) {
-    for (int i=1; i<repeat; i++) {
+    for (int i = 1; i < repeat; i ++) {
         digitalWrite(_pin, HIGH);
         delay(_cc);
         digitalWrite(_pin, LOW);
@@ -33,7 +33,7 @@ void Morse::dot(int repeat) {
 }
 
 void Morse::dash(int repeat) {
-    for (int i=1; i<repeat; i++) {
+    for (int i = 1; i < repeat; i ++) {
         digitalWrite(_pin, HIGH);
         delay(_cc * 3);
         digitalWrite(_pin, LOW);
@@ -61,14 +61,14 @@ void Morse::setCC(int cc) {
 }
 
 void Morse::setLS(uint8_t ls) {
-    if ( ls > 0 ) 
+    if (ls > 0) 
         _letter_space = ls;
     else 
         _letter_space = DEF_MORSE_LS;
 }
 
 void Morse::setWS(uint8_t ws) {
-    if ( ws > 0) 
+    if (ws > 0) 
         _word_space = ws;
     else 
         _word_space = DEF_MORSE_WS;
