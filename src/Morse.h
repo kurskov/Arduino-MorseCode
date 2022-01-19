@@ -31,8 +31,17 @@
 class Morse {
     public:
         Morse(uint8_t pin=DEF_MORSE_PIN; int cc=DEF_MORSE_CC);
-        void dot();                 // dot + 1 cycle (1H + 1L)
-        void dash();                // dash + 1 cycle (3H + 1L)
+        
+        // The return a dot and pause (1H + 1L) at one repeat.
+        // Takes 2 cycles (every repeat).
+        // For autorepeat you need specify the number of repetitions, f.e.: dot(3).
+        void dot(int repeat = 1);
+        
+        // The return a dash and pause (3H + 1L) at one repeat.
+        // Takes 4 cycles (every repeat).
+        // For autorepeat you need specify the number of repetitions, f.e.: dash(2).
+        void dash(int repeat = 1);
+        
         void ls();                  // _letter_space - 1 cycle (Def: 2L)
         void ws();                  // _word_space - 1 cycle (Def: 6L)
         void setPin(uint8_t pin);   // set _pin (signal pin)

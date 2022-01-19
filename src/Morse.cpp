@@ -23,18 +23,22 @@ Morse::Morse(uint8_t pin; int cc) {
 
 // Transmit functions
 
-void Morse::dot() {
-    digitalWrite(_pin, HIGH);
-    delay(_cc);
-    digitalWrite(_pin, LOW);
-    delay(_cc);
+void Morse::dot(int repeat) {
+    for (int i=1; i<repeat; i++) {
+        digitalWrite(_pin, HIGH);
+        delay(_cc);
+        digitalWrite(_pin, LOW);
+        delay(_cc);
+    }
 }
 
-void Morse::dash() {
-    digitalWrite(_pin, HIGH);
-    delay(_cc * 3);
-    digitalWrite(_pin, LOW);
-    delay(_cc);
+void Morse::dash(int repeat) {
+    for (int i=1; i<repeat; i++) {
+        digitalWrite(_pin, HIGH);
+        delay(_cc * 3);
+        digitalWrite(_pin, LOW);
+        delay(_cc);
+    }
 }
 
 void Morse::ls() {
