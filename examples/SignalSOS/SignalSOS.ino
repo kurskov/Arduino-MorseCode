@@ -8,15 +8,10 @@ void setup()
  
 void loop()
 {
-    // used default settings
-    morse.dot(); morse.dot(); morse.dot(); morse.ls();
-    morse.dash(); morse.dash(); morse.dash(); morse.ls();
-    morse.dot(); morse.dot(); morse.dot(); morse.ws();
-
-    // new pin number and clock cycle
-    morse.setPin(12);
-    morse.setCC(500);
-    morse.dot(); morse.dot(); morse.dot(); morse.ls();
-    morse.dash(); morse.dash(); morse.dash(); morse.ls();
-    morse.dot(); morse.dot(); morse.dot(); morse.ws();
+    morse.dot(3);   // lettar 'S' (***)
+    morse.ls();     // space between letters in a word
+    morse.dash(3);  // letter 'O' (---)
+    morse.ls();     // space between letters in a word
+    morse.dot(3);   // letter 'S' (***)
+    morse.ws();     // space between words in a phrase
 }
