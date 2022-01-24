@@ -9,7 +9,7 @@
 
     Author: Dmitrii Kurskov (dmitrii@kurskov.ru)
     GitHub: https://github.com/kurskov/Arduino-MorseCode
-    Version: 1.0
+    Version: 1.1.0
 */
 
 // Include guard
@@ -48,7 +48,7 @@ class Morse {
         void setCC(int cc);             // set _cc (clock cycle)
         void setLS(uint8_t ls);         // set _letter_space 
         void setWS(uint8_t ws);         // set _word_space
-        void setBasicLevel(bool bl);    //
+        void setBasicLevel(bool bl);    // set _basic_level
         void reset();                   // set default settings
     private:
         uint8_t _pin;                   // signal pin
