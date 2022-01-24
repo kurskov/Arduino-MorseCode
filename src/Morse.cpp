@@ -9,15 +9,17 @@
 
 // Constructor
 
-Morse::Morse(uint8_t pin; int cc) {
+Morse::Morse(uint8_t pin; int cc; bool basic_level) {
     // set basic parameter
     setPin(pin);
     setCC(cc);
     setLS(DEF_MORSE_LS);
     setWS(DEF_MORSE_WS);
+    setBasicLevel(basic_level);
+
     // output's configuration
     pinMode(_pin, OUTPUT);
-    digitalWrite(_pin, LOW);
+    digitalWrite(_pin, _basic_level);
 }
 
 
@@ -25,18 +27,18 @@ Morse::Morse(uint8_t pin; int cc) {
 
 void Morse::dot(int repeat) {
     for (int i = 1; i < repeat; i ++) {
-        digitalWrite(_pin, HIGH);
+        digitalWrite(_pin, !_basic_level);
         delay(_cc);
-        digitalWrite(_pin, LOW);
+        digitalWrite(_pin, _basic_level);
         delay(_cc);
     }
 }
 
 void Morse::dash(int repeat) {
     for (int i = 1; i < repeat; i ++) {
-        digitalWrite(_pin, HIGH);
+        digitalWrite(_pin, !_basic_level);
         delay(_cc * 3);
-        digitalWrite(_pin, LOW);
+        digitalWrite(_pin, _basic_level);
         delay(_cc);
     }
 }
@@ -72,6 +74,10 @@ void Morse::setWS(uint8_t ws) {
         _word_space = ws;
     else 
         _word_space = DEF_MORSE_WS;
+}
+
+void Morse::setBasicLevel(bool bl) {
+    _basic_level = basic_level;
 }
 
 void Morse::reset() {
