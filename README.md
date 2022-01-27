@@ -16,6 +16,7 @@ between words - 7 dots (may by changed).
 
 * Controllers pin number (PN): 13
 * Clock cycle (CC): 250 ms
+* Basic level (BL): LOW (0)
 
 ---
 ## Basic functions
@@ -23,17 +24,21 @@ between words - 7 dots (may by changed).
 ### Constructor
 
 There are three options for creating an object:
-* default settings (PN=13, CC=250)
+* default settings (PN=13, CC=250, BL=LOW)
   ```c++
   Morse morse();
   ```
-* with select pin number (CC=250)
+* with select pin number (CC=250, BL=LOW)
   ```c++
   Morse morse(13);
   ```
-* with select all parametrs
+* with select pin number and clock cycle (BL=LOW)
   ```c++
   Morse morse(13, 250);
+  ```
+* with select all parametrs
+  ```c++
+  Morse morse(13, 250, LOW);
   ```
 
 ### Dot
@@ -114,6 +119,19 @@ void setWS(uint8_t word_space);
 ```
 Parameter:
 **word_space** - pause between words in quantity clock cycles *(unsigned char)*.
+
+### setBasicLevel()
+
+Set the basic level for transmit symbols.  
+May be set as LOW (default) or HIGH.  
+If level sets as LOW, a dot transmits as HIGH-LOW ( _-_ ), 
+else a dot transmits as LOW-HIGH ( -_- ).
+```c++
+void setBasicLevel(bool basic_level);
+```
+Parameter:
+**basic_level** - HIGH (1) or LOW (0) level for a pause *(bool)*.
+
 
 ### reset()
 
