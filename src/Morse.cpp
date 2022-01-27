@@ -9,10 +9,10 @@
 
 // Constructor
 
-Morse::Morse(uint8_t pin, int cc, bool basic_level) {
+Morse::Morse(uint8_t pin, int clock_cycle, bool basic_level) {
     // set basic parameter
     setPin(pin);
-    setCC(cc);
+    setCC(clock_cycle);
     setLS(DEF_MORSE_LS);
     setWS(DEF_MORSE_WS);
     setBasicLevel(basic_level);
@@ -28,27 +28,27 @@ Morse::Morse(uint8_t pin, int cc, bool basic_level) {
 void Morse::dot(int repeat) {
     for (int i = 0; i < repeat; i ++) {
         digitalWrite(_pin, !_basic_level);
-        delay(_cc);
+        delay(_clock_cycle);
         digitalWrite(_pin, _basic_level);
-        delay(_cc);
+        delay(_clock_cycle);
     }
 }
 
 void Morse::dash(int repeat) {
     for (int i = 0; i < repeat; i ++) {
         digitalWrite(_pin, !_basic_level);
-        delay(_cc * 3);
+        delay(_clock_cycle * 3);
         digitalWrite(_pin, _basic_level);
-        delay(_cc);
+        delay(_clock_cycle);
     }
 }
 
 void Morse::ls() {
-    delay(_cc * (_letter_space - 1));
+    delay(_clock_cycle * (_letter_space - 1));
 }
 
 void Morse::ws() {
-    delay(_cc * (_word_space - 1));
+    delay(_clock_cycle * (_word_space - 1));
 }
 
 
@@ -58,20 +58,20 @@ void Morse::setPin(uint8_t pin) {
     _pin = pin;
 }
 
-void Morse::setCC(int cc) {
-    _cc = cc;
+void Morse::setCC(int clock_cycle) {
+    _clock_cycle = clock_cycle;
 }
 
-void Morse::setLS(uint8_t ls) {
-    if (ls > 0) 
-        _letter_space = ls;
+void Morse::setLS(uint8_t letter_space) {
+    if (letter_space > 0) 
+        _letter_space = letter_space;
     else 
         _letter_space = DEF_MORSE_LS;
 }
 
-void Morse::setWS(uint8_t ws) {
-    if (ws > 0) 
-        _word_space = ws;
+void Morse::setWS(uint8_t word_space) {
+    if (word_space > 0) 
+        _word_space = word_space;
     else 
         _word_space = DEF_MORSE_WS;
 }
