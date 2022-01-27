@@ -1,6 +1,6 @@
 #include <Morse.h>
  
-Morse morse();
+Morse morse;
  
 void setup()
 {
@@ -8,6 +8,10 @@ void setup()
  
 void loop()
 {
+    // slow
+    morse.setLS(10);
+    morse.setWS(50);
+
     // Default basic level is LOW.
     // Send HELLO
     // _-_-_-_-___-___-_---_-_-___-_---_-_-___---_---_---________
@@ -19,6 +23,9 @@ void loop()
     // Send WORLD
     // -_-___-___---___-___-___---_-___-_---_-___-_-_---___-_-_---
     getW(); getO(); getR(); getL(); getD();
+    
+    // Change the base level.
+    morse.setBasicLevel(LOW);
 }
 
 // letter D

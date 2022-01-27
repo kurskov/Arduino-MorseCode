@@ -1,6 +1,6 @@
 #include <Morse.h>
  
-Morse morse();
+Morse morse;
  
 void setup()
 {
