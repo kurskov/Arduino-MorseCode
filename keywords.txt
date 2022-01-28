@@ -14,6 +14,7 @@ setPin          KEYWORD2
 setCC           KEYWORD2
 setLS           KEYWORD2
 setWS           KEYWORD2
+setBasicLevel   KEYWORD2
 reset           KEYWORD2
 
 ## Constants (LITERAL1)

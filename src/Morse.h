@@ -9,7 +9,7 @@
 
     Author: Dmitrii Kurskov (dmitrii@kurskov.ru)
     GitHub: https://github.com/kurskov/Arduino-MorseCode
-    Version: 1.0
+    Version: 1.1.0
 */
 
 // Include guard
@@ -30,21 +30,43 @@
 
 class Morse {
     public:
-        Morse(uint8_t pin=DEF_MORSE_PIN; int cc=DEF_MORSE_CC);
-        void dot();                 // dot + 1 cycle (1H + 1L)
-        void dash();                // dash + 1 cycle (3H + 1L)
-        void ls();                  // _letter_space - 1 cycle (Def: 2L)
-        void ws();                  // _word_space - 1 cycle (Def: 6L)
-        void setPin(uint8_t pin);   // set _pin (signal pin)
-        void setCC(int cc);         // set _cc (clock cycle)
-        void setLS(uint8_t ls);     // set _letter_space 
-        void setWS(uint8_t ws);     // set _word_space
-        void reset();               // set default settings
+        Morse(uint8_t pin = DEF_MORSE_PIN, int clock_cycle = DEF_MORSE_CC, bool basic_level = LOW);
+        
+        // The return a dot and pause (1H + 1L) at one repeat.
+        // Takes 2 cycles (every repeat).
+        // For autorepeat you need specify the number of repetitions, f.e.: dot(3).
+        void dot(int repeat = 1);
+        
+        // The return a dash and pause (3H + 1L) at one repeat.
+        // Takes 4 cycles (every repeat).
+        // For autorepeat you need specify the number of repetitions, f.e.: dash(2).
+        void dash(int repeat = 1);
+        
+        // The return a space between letters in a word.
+        // Default takes 2 cycles (DEF_MORSE_LS - 1).
+        // This function takes into account a pause of end a dot or a dash.
+        void ls();
+        
+        // The return a space between words in a phrase.
+        // Default takes 6 cycles (DEF_MORSE_WS - 1).
+        // This function takes into account a pause of end a dot or a dash.
+        void ws();
+        
+        // Set functions
+        void setPin(uint8_t pin);
+        void setCC(int clock_cycle);
+        void setLS(uint8_t letter_space);
+        void setWS(uint8_t word_space);
+        void setBasicLevel(bool basic_level);
+
+        void reset();                   // set default settings
+    
     private:
-        uint8_t _pin;               // signal pin
-        int _cc;                    // clock cycle
-        uint8_t _letter_space;      // space between letters in a word
-        uint8_t _word_space;        // space between words in a phrase
+        uint8_t _pin;                   // signal pin
+        int _clock_cycle;               // clock cycle
+        uint8_t _letter_space;          // space between letters in a word
+        uint8_t _word_space;            // space between words in a phrase
+        bool _basic_level;              // basic lever of transmit (Def: LOW: L-H-L) 
 };
 
 #endif // _H_056E5B47_88DD_4CDD_83F5_175F7A63871E
