@@ -26,7 +26,7 @@ between words - 7 dots (may by changed).
 There are three options for creating an object:
 * default settings (PN=13, CC=250, BL=LOW)
   ```c++
-  Morse morse();
+  Morse morse;
   ```
 * with select pin number (CC=250, BL=LOW)
   ```c++
@@ -43,19 +43,26 @@ There are three options for creating an object:
 
 ### Dot
 
-The function to transmit one dot.  
-1 clock cycle high level on the pin, 1 clock cycle low level on the pin.
+The function to transmit one or several dots.  
+To send several dots in a row, you must specify their number as a parameter. If the parameter is not set the function transmit one dot.  
+Takes 2 cycles for every repeat: 1 clock for transmiting symbol and 1 clock for pause between symbols.  
+
+Parameter:  
+**`repeat`** - a number of repeats *`(integer)`*
 ```c++
-void dot();
+void dot(int repeat);
 ```
 
 ### Dash
 
-The function to transmit one dash.  
-3 clock cycle high level on the pin, 1 clock cycle low level on the pin.
+The function to transmit one or several dashes.  
+To send several dashes in a row, you must specify their number as a parameter. If the parameter is not set the function transmit one dash.  
+Takes 4 cycles for every repeat: 3 clock for transmiting symbol and 1 clock for pause between symbols.  
 
+Parameter:  
+**`repeat`** - a number of repeats *`(integer)`*
 ```c++
-void dash();
+void dash(int repeat);
 ```
 
 ### Letter space
@@ -81,59 +88,64 @@ In the settings this value set as 7. This function decrease set value on 1 point
 
 You can change pin number, clock cycle, pause between characters in a word and pause between words.
 
-### setPin()
+### `setPin()`
 
 Set Arduino pin number for transmitting morse code.
+
+Parameter:  
+**`pin_number`** - a number of Arduino pin *`(unsigned char)`*
 ```c++
 void setPin(uint8_t pin_number);
 ```
-Parameter:  
-**pin_number** - a number of Arduino pin *(unsigned char)*
 
-### setCC()
+### `setCC()`
 
 Set clock cycle of transmitting morse code.  
 This value determines the duration of the point and the interval between elements of the same character (in milliseconds).
+
+Parameter:  
+**`clock_cycle`** - clock cycle of trancmitting in milliseconds *`(integer)`*.
 ```c++
 void setCC(int clock_cycle);
 ```
-Parameter:  
-**clock_cycle** - clock cycle of trancmitting in milliseconds *(integer)*.
 
-### setLS()
+### `setLS()`
 
 Set pause between characters in a word.  
 The default is 3 clock cycles (as defined in Morse code), but can be changed for special settings.
+
+Parameter:  
+**`letter_space`** - pause between characters in quantity clock cycles *`(unsigned char)`*.
 ```c++
 void setSL(uint8_t letter_space);
 ```
-Parameter:  
-**letter_space** - pause between characters in quantity clock cycles *(unsigned char)*.
 
-### setWS()
+### `setWS()`
 
 Set pause between words.
 The default is 7 clock cycles (as defined in Morse code), but can be changed for special settings.
+
+Parameter:
+**`word_space`** - pause between words in quantity clock cycles *`(unsigned char)`*.
 ```c++
 void setWS(uint8_t word_space);
 ```
-Parameter:
-**word_space** - pause between words in quantity clock cycles *(unsigned char)*.
 
-### setBasicLevel()
+### `setBasicLevel()`
 
 Set the basic level for transmit symbols.  
 May be set as LOW (default) or HIGH.  
 If level sets as LOW, a dot transmits as HIGH-LOW ( _-_ ), 
 else a dot transmits as LOW-HIGH ( -_- ).
+
+Parameter:
+**`basic_level`** - HIGH (1) or LOW (0) level for a pause *`(bool)`*.
 ```c++
 void setBasicLevel(bool basic_level);
 ```
-Parameter:
-**basic_level** - HIGH (1) or LOW (0) level for a pause *(bool)*.
 
 
-### reset()
+### `reset()`
 
 Return to default settings:
 * Controllers pin number (PN): 13
